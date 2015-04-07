@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function checkGuess() {
       var thisGuess = document.querySelector('#userGuess').value;
-      var howClose;
+      var howHot;
       // alert('thisGuess =' + thisGuess);
       // validate guess as a number
       if (!isInt(thisGuess) || parseInt(thisGuess) > maxNum) {
@@ -117,17 +117,17 @@ document.addEventListener("DOMContentLoaded", function() {
       // using abs value below will not divulge directional +/- feedback
       var proximity = Math.abs(numToGuess - parseInt(thisGuess));
       if (proximity >= 50) {
-        howClose = ' is Ice Cold';
+        howHot = ' is Ice Cold';
       } else if (proximity < 50 && proximity >= 30) {
-          howClose = ' is Cold';
+          howHot = ' is Cold';
       } else if (proximity < 30 && proximity >= 20) {
-          howClose = ' is Warm';
+          howHot = ' is Warm';
       } else if (proximity < 20 && proximity >= 10) {
-          howClose = ' is Hot';
+          howHot = ' is Hot';
       } else if (proximity < 10 && proximity >= 1) {
-          howClose = ' is Very Hot';
+          howHot = ' is Very Hot';
       } else {
-          howClose = ' is CORRECT!';
+          howHot = ' is CORRECT!';
           /* https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute */
           document.querySelector('#guessButton').setAttribute('disabled', true);
           document.querySelector('#userGuess').setAttribute('disabled', true);
@@ -140,11 +140,11 @@ document.addEventListener("DOMContentLoaded", function() {
             toggleClass(document.querySelector('nav ul li:last-child'), 'drawAttention')}, 1000
           );
       } // end if (proximity ...)
-      document.querySelector('#feedback').innerHTML = thisGuess + howClose;
+      document.querySelector('#feedback').innerHTML = thisGuess + howHot;
 
       /* append guesses list */
       var newLi = document.createElement('li');
-      newLi.innerHTML = thisGuess + howClose;
+      newLi.innerHTML = thisGuess + howHot;
       // console.log(newLi);
 
       /* to append: */
